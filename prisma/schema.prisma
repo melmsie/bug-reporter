@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// A user's data
+model User {
+  id    String @id
+  posts Post[]
+  votes Vote[]
+}
+
+// Represents a post made
+// Can be any type of post, using PostType enum
+model Post {
+  description String
+  id          Int      @id @default(autoincrement())
+  image       String?
+  link        String?
+  messageID   String?
+  removed     Boolean  @default(false)
+  solved      Boolean  @default(false)
+  steps       String?
+  threadID    String?
+  timestamp   DateTime
+  type        PostType
+  votes       Vote[]
+
+  user   User   @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID String
+}
+
+// Represents a vote on any post
+// Shows whether the user could reproduce the bug
+model Vote {
+  reproduced Boolean
+  timestamp  DateTime
+
+  user   User   @relation(fields: [userID], references: [id], onDelete: SetNull)
+  userID String
+
+  post   Post @relation(fields: [postID], references: [id], onDelete: Cascade)
+  postID Int
+
+  @@id([userID, postID])
+}
+
+enum PostType {
+  BUG
+  FEEDBACK
+}

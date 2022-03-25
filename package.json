@@ -1,0 +1,39 @@
+{
+  "name": "destinyshit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dbpush": "npx prisma db push",
+    "studio": "npx prisma studio",
+    "start": "node src/index.js | pino-pretty",
+    "deploy": "node scripts/deploy-commands.js",
+    "lint": "semistandard --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melmsie/destinyshit.git"
+  },
+  "keywords": [],
+  "author": "melmsie & kable",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melmsie/destinyshit/issues"
+  },
+  "homepage": "https://github.com/melmsie/destinyshit#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.13.0-dev.1644797188.0dfdb2c",
+    "@discordjs/rest": "^0.3.0",
+    "@prisma/client": "^3.9.2",
+    "discord-api-types": "^0.27.1",
+    "discord.js": "^14.0.0-dev.1645012998.7959a68",
+    "pino": "^7.8.0",
+    "pino-pretty": "^7.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "prisma": "^3.9.2",
+    "semistandard": "^16.0.1"
+  }
+}

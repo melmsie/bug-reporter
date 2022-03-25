@@ -1,0 +1,21 @@
+{
+  "extends": "semistandard",
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
+  "globals": {
+      "BigInt": true
+  },
+  "rules": {
+      "prefer-const": ["error", {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }],
+      "quotes": ["error", "single"],
+      "no-unused-vars": ["warn", {
+        "vars": "all",
+        "args": "after-used",
+        "argsIgnorePattern": "Memer|msg|args|addCD|Currency|userEntry|donor|guildEntry|isGlobalPremiumGuild"
+      }]
+  }
+}
