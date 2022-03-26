@@ -11,7 +11,7 @@ const commands = [
     .addStringOption(option => option.setName('description').setDescription('Describe the bug in detail').setRequired(true))
     .addStringOption(option => option.setName('reproduction').setDescription('Describe how we can reproduce it').setRequired(true))
     .addStringOption(option => option.setName('link').setDescription('Message link to the bug happening in this server').setRequired(false))
-    .addAttachmentOption(option => option.setName('image').setDescription('A screenshot of your fashion').setRequired(false))
+    .addAttachmentOption(option => option.setName('image').setDescription('A screenshot of the bug').setRequired(false))
 
   // new SlashCommandBuilder().setName('feedback').setDescription('Post a bug in the bugs channel')
   //   .addStringOption(option => option.setName('description').setDescription('Describe the bug in detail').setRequired(true)),

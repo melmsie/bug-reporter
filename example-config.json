@@ -1,7 +1,8 @@
 {
-	"clientId": "",
-	"guildId": "",
-	"token": "",
-  "fashionChannel": "",
-  "weaponChannel": ""
+  "clientId": "",
+  "guildId": "",
+  "token": "",
+  "feedbackChannel": "",
+  "bugChannel": "",
+  "logsChannel": ""
 }
