@@ -31,7 +31,9 @@ module.exports = {
       }
     });
 
-    const oldMessage = await client.channels.cache.get(config.bugChannel).messages.fetch(postData.messageID);
+    try {
+      const oldMessage = (await client.channels.cache.get(config.bugChannel).messages.fetch(postData.messageID) || undefined);
+    } catch (error) {}
 
     if (action === 'fixed') {
       await oldMessage.edit({
@@ -84,39 +86,21 @@ module.exports = {
         components: [{
           type: 1,
           components: [
+  
             {
               type: 2,
-              label: 'Can Reproduce',
-              style: 3,
-              custom_id: `vote-positive-${postData.id}`
-            },
-            {
-              type: 2,
-              label: 'Cannot Reproduce',
-              style: 4,
-              custom_id: `vote-negative-${postData.id}`
-            }
-          ]
-
-        },
-        {
-          type: 1,
-          components: [
-
-            {
-              type: 2,
-              label: 'Bug Fixed',
+              label: 'Fix',
               style: 2,
               custom_id: `admin-fixed-${postData.id}`
             },
             {
               type: 2,
-              label: 'Remove Post',
+              label: 'Invalid',
               style: 2,
               custom_id: `admin-removed-${postData.id}`
             }
           ]
-
+  
         }]
       });
       const updatedEntry = await prisma.post.update({
@@ -134,6 +118,20 @@ module.exports = {
         content: `Removed by ${interaction.user.username}`,
         embeds: [
           oldMessage.embeds[0]
+        ],
+        components: [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                label: 'Reward',
+                style: 3,
+                custom_id: `admin-reward-${postData.id}`
+              }
+            ]
+
+          }
         ]
       });
       await oldMessage.delete();
@@ -158,6 +156,20 @@ module.exports = {
               name: 'Deployed!',
               iconURL: 'https://cdn.discordapp.com/emojis/575412409737543694.gif?quality=lossless'
             })
+        ],
+        components: [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                label: 'Reward',
+                style: 3,
+                custom_id: `admin-reward-${postData.id}`
+              }
+            ]
+
+          }
         ]
       });
       await oldMessage.delete();
@@ -172,6 +184,25 @@ module.exports = {
       });
     }
 
-    await interaction.deferUpdate();
+    if (action === 'reward') {
+     
+      const updatedEntry = await prisma.post.update({
+        where: {
+          id: postData.id
+        },
+        data: {
+          reward: true
+        }
+      });
+    }
+
+    await interaction.reply({
+      embeds: [
+        {
+          description: `User post marked as reward worthy`
+        }
+      ],
+      ephemeral: true
+    });
   }
 };

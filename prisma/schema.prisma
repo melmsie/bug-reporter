@@ -26,6 +26,7 @@ model Post {
   link        String?
   messageID   String?
   removed     Boolean  @default(false)
+  reward      Boolean  @default(false)
   solved      Boolean  @default(false)
   steps       String?
   threadID    String?

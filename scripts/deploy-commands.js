@@ -4,19 +4,14 @@ const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId, token } = require('../config.json');
 
 const commands = [
-  new SlashCommandBuilder().setName('findsimilar').setDescription('Find similar bug reports so you do not annoy Kable')
-    .addStringOption(option => option.setName('description').setDescription('Describe your bug in a one liner').setRequired(true)),
-
-  new SlashCommandBuilder().setName('bug').setDescription('Post a bug in the bugs channel')
-    .addStringOption(option => option.setName('description').setDescription('Describe the bug in detail').setRequired(true))
-    .addStringOption(option => option.setName('reproduction').setDescription('Describe how we can reproduce it').setRequired(true))
-    .addStringOption(option => option.setName('link').setDescription('Message link to the bug happening in this server').setRequired(false))
-    .addAttachmentOption(option => option.setName('image').setDescription('A screenshot of the bug').setRequired(false))
-
-  // new SlashCommandBuilder().setName('feedback').setDescription('Post a bug in the bugs channel')
-  //   .addStringOption(option => option.setName('description').setDescription('Describe the bug in detail').setRequired(true)),
+ new SlashCommandBuilder().setName('bugreport').setDescription('Post a bug in the bugs channel')
+    .addStringOption(option => option.setName('description').setDescription('Describe the bug in detail.').setRequired(true))
+    .addStringOption(option => option.setName('reproduction').setDescription('Describe how we can reproduce this bug.').setRequired(true))
+    .addStringOption(option => option.setName('platform').setDescription('What platform did you experience the bug on?').setAutocomplete(true).setRequired(true))
+    .addAttachmentOption(option => option.setName('image').setDescription('Attatch a screenshot of the bug').setRequired(false))
 ]
   .map(command => command.toJSON());
+
 
 const rest = new REST({ version: '9' }).setToken(token);
 
