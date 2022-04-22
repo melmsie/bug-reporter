@@ -5,10 +5,12 @@ const { PostType } = require('@prisma/client');
 const { Embed } = require('@discordjs/builders');
 module.exports = {
   async run (interaction, client) {
+    const similar = functions.search('ass', ['what an ass', 'badosz is such an ass', 'wow, the sass', 'amazing ass badosz']);
+    return console.log(similar)
     await interaction.reply({
       embeds: [
         {
-          description: 'This does nothing so far, wait for badosz to send me a function for it'
+          description: similar[0]
         }
       ],
       ephemeral: true
