@@ -31,8 +31,9 @@ module.exports = {
       }
     });
 
+    let oldMessage;
     try {
-      const oldMessage = (await client.channels.cache.get(config.bugChannel).messages.fetch(postData.messageID) || undefined);
+      oldMessage = await client.channels.cache.get(config.bugChannel).messages.fetch(postData.messageID);
     } catch (error) {}
 
     if (action === 'fixed') {
