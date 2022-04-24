@@ -205,5 +205,7 @@ module.exports = {
         ephemeral: true
       });
     }
+
+    await interaction.deferUpdate();
   }
 };
