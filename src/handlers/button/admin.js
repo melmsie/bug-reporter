@@ -195,15 +195,15 @@ module.exports = {
           reward: true
         }
       });
-    }
 
-    await interaction.reply({
-      embeds: [
-        {
-          description: `User post marked as reward worthy`
-        }
-      ],
-      ephemeral: true
-    });
+      await interaction.reply({
+        embeds: [
+          {
+            description: `User post marked as reward worthy`
+          }
+        ],
+        ephemeral: true
+      });
+    }
   }
 };
