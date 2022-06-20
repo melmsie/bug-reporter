@@ -103,7 +103,7 @@ module.exports = {
     await interaction.reply({
       embeds: [
         {
-          description: `Your bug report is now live [here](https://canary.discord.com/channels/${postLink.guildId}/${postLink.channelId}/${postLink.id})!\n\nWe track these all internally. Even if the post is deleted, we have record of it and will distrubute rewards for *valid* bugs accordingly after the rewrite is live.`
+          description: `Your bug report has been sent!\n\nWe track these all internally. If the bug report was valid and informative, you'll get your rewards for posting after the rewrite has launched.`
         }
       ],
       ephemeral: true
