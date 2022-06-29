@@ -20,15 +20,15 @@ module.exports = {
       }
     });
 
-    // if (postData.userID === interaction.user.id) {
-    //   interaction.reply({
-    //     embeds: [
-    //       { description: 'You cannot "reproduce" with yourself' }
-    //     ],
-    //     ephemeral: true
-    //   });
-    //   return;
-    // }
+    if (postData.userID === interaction.user.id) {
+      interaction.reply({
+        embeds: [
+          { description: 'You cannot "reproduce" with yourself' }
+        ],
+        ephemeral: true
+      });
+      return;
+    }
 
     const approve = outcome === 'positive';
 
