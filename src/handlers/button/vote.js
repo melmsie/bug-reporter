@@ -1,4 +1,5 @@
 const prisma = require('./../../utils/prisma');
+const config = require('../../../config.json');
 module.exports = {
   async handle (interaction, client) {
     const [type, outcome, postID] = interaction.customId.split('-');
@@ -10,7 +11,7 @@ module.exports = {
       }
     });
 
-    const postData = await prisma.post.findFirst({
+    let postData = await prisma.post.findFirst({
       where: {
         id: Number(postID)
       },
@@ -19,19 +20,19 @@ module.exports = {
       }
     });
 
-    if (postData.userID === interaction.user.id) {
-      interaction.reply({
-        embeds: [
-          { description: 'You cannot "reproduce" with yourself' }
-        ],
-        ephemeral: true
-      });
-      return;
-    }
+    // if (postData.userID === interaction.user.id) {
+    //   interaction.reply({
+    //     embeds: [
+    //       { description: 'You cannot "reproduce" with yourself' }
+    //     ],
+    //     ephemeral: true
+    //   });
+    //   return;
+    // }
 
     const approve = outcome === 'positive';
 
-    await prisma.vote.upsert({
+    const afterVote = await prisma.vote.upsert({
       create: {
         reproduced: approve,
         userID: interaction.user.id,
@@ -48,6 +49,64 @@ module.exports = {
         reproduced: approve,
         timestamp: new Date(Date.now())
       }
+    });
+
+    postData = await prisma.post.findFirst({
+      where: {
+        id: Number(postID)
+      },
+      include: {
+        votes: true
+      }
+    });
+    
+    const oldMessage = await client.channels.cache.get(config.bugChannel).messages.fetch(postData.messageID);
+    await oldMessage.edit({
+      embeds: [
+        oldMessage.embeds[0]
+          .setColor(4902021)
+          .setAuthor({
+            name: 'FIXED AWAITING DEPLOYMENT',
+            iconURL: 'https://cdn.discordapp.com/emojis/575412409737543694.gif?quality=lossless'
+          })
+      ],
+      components: [{
+        type: 1,
+        components: [
+          {
+            type: 2,
+            label: `Can Reproduce (${postData.votes.filter(x=>x.reproduced).length})`,
+            style: 3,
+            custom_id: `vote-positive-${postData.id}`
+          },
+          {
+            type: 2,
+            label: `Cannot Reproduce (${postData.votes.filter(x=>!x.reproduced).length})`,
+            style: 4,
+            custom_id: `vote-negative-${postData.id}`
+          }
+        ]
+
+      },
+      {
+        type: 1,
+        components: [
+
+          {
+            type: 2,
+            label: 'Bug Fixed',
+            style: 2,
+            custom_id: `admin-fixed-${postData.id}`
+          },
+          {
+            type: 2,
+            label: 'Remove Post',
+            style: 2,
+            custom_id: `admin-removed-${postData.id}`
+          }
+        ]
+
+      }]
     });
 
     if (voteData) {

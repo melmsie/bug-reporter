@@ -86,13 +86,13 @@ module.exports = {
           components: [
             {
               type: 2,
-              label: 'Can Reproduce',
+              label: `Can Reproduce (${postData.votes.filter(x=>x.reproduced).length})`,
               style: 3,
               custom_id: `vote-positive-${postData.id}`
             },
             {
               type: 2,
-              label: 'Cannot Reproduce',
+              label: `Cannot Reproduce (${postData.votes.filter(x=>!x.reproduced).length})`,
               style: 4,
               custom_id: `vote-negative-${postData.id}`
             }
