@@ -21,8 +21,8 @@ module.exports = {
         {
           description: `**Stats for <@${interaction.options.data[0]?.value}>**\n\n` +
             `**\`Reported:\`** ${postData.length}\n` +
-            `**\`Valid & Fixed:\`** ${postData.filter(x=>x.solved === true).length} (${(postData.filter(x=>x.solved === true).length / postData.length).toFixed(0) * 100}%)\n` +
-            `**\`Invalid & Removed:\`** ${postData.filter(x=>x.solved !== true && x.removed === true).length} (${(postData.filter(x=>x.solved !== true && x.removed === true).length / postData.length).toFixed(0) * 100}%)\n` +
+            `**\`Valid & Fixed:\`** ${postData.filter(x=>x.solved === true).length} (${((postData.filter(x=>x.solved === true).length / postData.length) * 100).toFixed(0)}%)\n` +
+            `**\`Invalid & Removed:\`** ${postData.filter(x=>x.solved !== true && x.removed === true).length} (${((postData.filter(x=>x.solved !== true && x.removed === true).length / postData.length) * 100).toFixed(0)}%)\n` +
             `**\`Pending:\`** ${postData.filter(x=>x.removed !== true).length}`
         }
       ],
