@@ -64,11 +64,6 @@ module.exports = {
     await oldMessage.edit({
       embeds: [
         oldMessage.embeds[0]
-          .setColor(4902021)
-          .setAuthor({
-            name: 'FIXED AWAITING DEPLOYMENT',
-            iconURL: 'https://cdn.discordapp.com/emojis/575412409737543694.gif?quality=lossless'
-          })
       ],
       components: [{
         type: 1,
