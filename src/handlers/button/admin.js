@@ -6,7 +6,8 @@ const admins = [
   '172571295077105664', // Mel
   '284122164582416385', // Aeth
   '214858075650260992', // Bad
-  '363785301195358221' // Kable
+  '363785301195358221', // Kable
+  '213912135409991691' // Blue
 ];
 module.exports = {
   async handle (interaction, client) {
