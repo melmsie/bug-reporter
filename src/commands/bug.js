@@ -9,6 +9,7 @@ const { Embed } = require('@discordjs/builders');
 // .addAttachmentOption(option => option.setName('image').setDescription('A screenshot of your fashion').setRequired(false))
 module.exports = {
   async run (interaction, client) {
+    console.log(interaction.options)
     const description = interaction.options.data[0]?.value;
     const reproduction = interaction.options.data[1]?.value;
     const link = interaction.options.data[2]?.value;
