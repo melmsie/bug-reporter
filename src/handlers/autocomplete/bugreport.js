@@ -6,7 +6,7 @@ const platforms = {
   'Desktop':              'desktop',
   'Desktop (Canary)':     'canary',
   'Desktop (PTB)':        'ptb',
-  'Web Client (Browser)': 'web'
+  'Web Client (Browser)': 'web',
   'Other':                'other'
 
 };
