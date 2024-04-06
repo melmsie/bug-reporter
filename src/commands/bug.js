@@ -57,10 +57,10 @@ module.exports = {
     }
 
     if (reproduction) {
-      embed.addField({ name: 'Steps to Reproduce', value: reproduction });
+      embed.addField({ name: 'Reproduction', value: reproduction });
     }
     if (link) {
-      embed.addField({ name: 'Link to Example', value: link });
+      embed.addField({ name: 'Link', value: link });
     }
 
     const postLink = await interaction.member.guild.channels.resolve(config.bugChannel).send({
@@ -69,7 +69,7 @@ module.exports = {
           .setTitle(`Bug Report #${postData.id}`)
           .setColor(3092790)
           .setDescription(description)
-          .setFooter({ text: `Posted by ${interaction.user.username}#${interaction.user.discriminator} (${interaction.user.id})` })
+          .setFooter({ text: `Posted by ${interaction.user.username} (${interaction.user.id})` })
       ],
       components: [{
         type: 1,
