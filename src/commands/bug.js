@@ -10,10 +10,10 @@ const { Embed } = require('@discordjs/builders');
 module.exports = {
   async run (interaction, client) {
     console.log(interaction.options)
-    const description = interaction.options.data[0]?.value;
-    const reproduction = interaction.options.data[1]?.value;
-    const link = interaction.options.data[2]?.value;
-    const image = interaction.options.data[3];
+    const description = interaction.options.data.find(option => option.name === 'description')?.value;
+    const reproduction = interaction.options.data.find(option => option.name === 'reproduction')?.value;
+    const link = interaction.options.data.find(option => option.name === 'link')?.value;
+    const image = interaction.options.data.find(option => option.name === 'image');
     if (interaction.options.length < 0) {
       await interaction.reply({
         embeds: [
@@ -32,12 +32,12 @@ module.exports = {
         await interaction.reply({
           embeds: [
             {
-              description: `The file \`${image.attachment.name}\` is not an image, you're a bit dull aren't you`
+              description: `The file \`${image.attachment.name}\` is not a valid image file.\n\nYour image wasn't submitted, thread it!`
             }
           ],
           ephemeral: true
         });
-        return;
+        image = null;
       }
     }
 

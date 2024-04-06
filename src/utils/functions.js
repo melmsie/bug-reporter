@@ -7,10 +7,13 @@ module.exports = class MiscFunctions {
    */
   validateImage (url, contentType = 'image') {
     if (!url) return false;
-    const [suffix] = url.split('.').slice(-1);
+    const match = url.match(/\.([a-zA-Z0-9]+)(\?|$)/);
+    if (!match) return false;
+    const suffix = match[1];
     if (validImageTypes.includes(suffix) && contentType.includes('image')) {
       return true;
     }
+    return false;
   }
 
   /**

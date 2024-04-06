@@ -6,14 +6,19 @@ const admins = [
   '172571295077105664', // Mel
   '284122164582416385', // Aeth
   '214858075650260992', // Bad
-  '363785301195358221', // Kable
   '213912135409991691' // Blue
 ];
 module.exports = {
   async handle (interaction, client) {
     const [type, action, postID] = interaction.customId.split('-');
 
-    if (!admins.includes(interaction.user.id)) {
+    const postData = await prisma.post.findFirst({
+      where: {
+        id: Number(postID)
+      }
+    });
+
+    if (!(action === 'removed' && interaction.user.id === postData.userId) && !admins.includes(interaction.user.id)) {
       return interaction.reply(
         {
           embeds: [
@@ -25,12 +30,6 @@ module.exports = {
         }
       );
     }
-
-    const postData = await prisma.post.findFirst({
-      where: {
-        id: Number(postID)
-      }
-    });
 
     const oldMessage = await client.channels.cache.get(config.bugChannel).messages.fetch(postData.messageID);
 
