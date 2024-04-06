@@ -39,6 +39,42 @@ module.exports = {
       oldMessage = await client.channels.cache.get(config.bugChannel).messages.fetch(postData.messageID);
     } catch (error) {}
 
+    if (action === 'test') {
+      await oldMessage.edit({
+        embeds: [
+          oldMessage.embeds[0]
+            .setColor(15978339)
+            .setAuthor({
+              name: 'NEEDS TESTED',
+              iconURL: 'https://cdn.discordapp.com/emojis/955847572059193344.webp?size=96&quality=lossless'
+            })
+        ]
+      });
+    }
+    if (action === 'info') {
+      await oldMessage.edit({
+        embeds: [
+          oldMessage.embeds[0]
+            .setColor(14666938)
+            .setAuthor({
+              name: 'SENT A DM',
+              iconURL: 'https://cdn.discordapp.com/emojis/958138188235411548.webp?size=96&quality=lossless'
+            })
+        ]
+      });
+    }
+    if (action === 'devs') {
+      await oldMessage.edit({
+        embeds: [
+          oldMessage.embeds[0]
+            .setColor(3302605)
+            .setAuthor({
+              name: 'PASSED TO DEVS',
+              iconURL: 'https://cdn.discordapp.com/emojis/605899743645794306.webp?size=96&quality=lossless'
+            })
+        ]
+      });
+    }
     if (action === 'fixed') {
       await oldMessage.edit({
         embeds: [

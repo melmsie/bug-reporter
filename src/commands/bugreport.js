@@ -70,25 +70,48 @@ module.exports = {
           .setFooter({ text: `Posted by ${interaction.user.username} (${interaction.user.id})` })
       ],
       components: [
-      {
-        type: 1,
-        components: [
+        {
+          type: 1,
+          components: [
+            {
+              type: 2,
+              label: 'Test',
+              style: 2,
+              custom_id: `admin-test-${postData.id}`
+            },
+            {
+              type: 2,
+              label: 'Info',
+              style: 2,
+              custom_id: `admin-info-${postData.id}`
+            },
+            {
+              type: 2,
+              label: 'Devs',
+              style: 2,
+              custom_id: `admin-devs-${postData.id}`
+            },
+          ]
+        },
+        {
+          type: 1,
+          components: [
 
-          {
-            type: 2,
-            label: 'Notion\'d',
-            style: 1,
-            custom_id: `admin-fixed-${postData.id}`
-          },
-          {
-            type: 2,
-            label: 'Remove',
-            style: 4,
-            custom_id: `admin-removed-${postData.id}`
-          }
-        ]
-
-      }]
+            {
+              type: 2,
+              label: 'Notion\'d',
+              style: 1,
+              custom_id: `admin-fixed-${postData.id}`
+            },
+            {
+              type: 2,
+              label: 'Remove',
+              style: 4,
+              custom_id: `admin-removed-${postData.id}`
+            },
+          ]
+        }
+      ]
     });
 
     const updatedEntry = await prisma.post.update({
