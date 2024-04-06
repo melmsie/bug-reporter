@@ -15,10 +15,13 @@ module.exports = {
     const postData = await prisma.post.findFirst({
       where: {
         id: Number(postID)
+      },
+      include: {
+        user: true
       }
     });
 
-    if (!(action === 'removed' && interaction.user.id === postData.userId) && !admins.includes(interaction.user.id)) {
+    if (!(action === 'removed' && interaction.user.id === postData.user.id) && !admins.includes(interaction.user.id)) {
       return interaction.reply(
         {
           embeds: [
