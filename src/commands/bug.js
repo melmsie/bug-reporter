@@ -3,13 +3,9 @@ const prisma = require('../utils/prisma');
 const functions = new (require('../utils/functions'))();
 const { PostType } = require('@prisma/client');
 const { Embed } = require('@discordjs/builders');
-// .addStringOption(option => option.setName('description').setDescription('Describe the bug in detail').setRequired(true))
-// .addStringOption(option => option.setName('reproduction').setDescription('Describe how we can reproduce it').setRequired(true))
-// .addStringOption(option => option.setName('link').setDescription('Message link to the bug happening in this server').setRequired(false))
-// .addAttachmentOption(option => option.setName('image').setDescription('A screenshot of your fashion').setRequired(false))
+
 module.exports = {
   async run (interaction, client) {
-    console.log(interaction.options)
     const description = interaction.options.data.find(option => option.name === 'description')?.value;
     const reproduction = interaction.options.data.find(option => option.name === 'reproduction')?.value;
     const link = interaction.options.data.find(option => option.name === 'link')?.value;
