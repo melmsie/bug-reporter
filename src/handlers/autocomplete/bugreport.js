@@ -7,6 +7,7 @@ const platforms = {
   'Desktop (Canary)':     'canary',
   'Desktop (PTB)':        'ptb',
   'Web Client (Browser)': 'web'
+  'Other':                'other'
 
 };
 module.exports = {

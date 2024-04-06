@@ -6,8 +6,10 @@ const admins = [
   '172571295077105664', // Mel
   '284122164582416385', // Aeth
   '214858075650260992', // Bad
-  '363785301195358221' // Kable
-];
+  '613065902723694623', // Zomb
+  '304649407444287488', // DR. A
+  '863986381738475531', // Angel
+
 module.exports = {
   async handle (interaction, client) {
     const [type, action, postID] = interaction.customId.split('-');
@@ -42,7 +44,7 @@ module.exports = {
           oldMessage.embeds[0]
             .setColor(4902021)
             .setAuthor({
-              name: 'FIXED AWAITING DEPLOYMENT',
+              name: 'Reported on notion!',
               iconURL: 'https://cdn.discordapp.com/emojis/575412409737543694.gif?quality=lossless'
             })
         ],
@@ -52,15 +54,9 @@ module.exports = {
             components: [
               {
                 type: 2,
-                label: 'Deployed',
+                label: 'Fixed (remove)',
                 style: 3,
                 custom_id: `admin-deployed-${postData.id}`
-              },
-              {
-                type: 2,
-                label: 'Regression',
-                style: 4,
-                custom_id: `admin-regressed-${postData.id}`
               }
             ]
 
@@ -90,14 +86,14 @@ module.exports = {
   
             {
               type: 2,
-              label: 'Fix',
-              style: 2,
+              label: 'Notion\'d',
+              style: 1,
               custom_id: `admin-fixed-${postData.id}`
             },
             {
               type: 2,
-              label: 'Invalid',
-              style: 2,
+              label: 'Remove',
+              style: 4,
               custom_id: `admin-removed-${postData.id}`
             }
           ]

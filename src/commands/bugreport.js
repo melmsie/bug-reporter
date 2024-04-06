@@ -22,19 +22,17 @@ module.exports = {
     }
 
     if (image) {
-      console.log(`url: ${image.attachment.url}`)
-      console.log(`type: ${image.attachment.contentType}`)
       const isImage = functions.validateImage(image.attachment.url, image.attachment.contentType);
       if (!isImage) {
         await interaction.reply({
           embeds: [
             {
-              description: `The file \`${image.attachment.name}\` is not a valid image file`
+              description: `The file \`${image.attachment.name}\` is not a valid image file.\n\nYour image wasn't submitted, you can give it to a mod to attach to the bug report if needed.`
             }
           ],
           ephemeral: true
         });
-        return;
+        image = null;
       }
     }
 
@@ -69,7 +67,7 @@ module.exports = {
           .setTitle(`Bug Report #${postData.id}`)
           .setColor(3092790)
           .setDescription(description)
-          .setFooter({ text: `Posted by ${interaction.user.username}#${interaction.user.discriminator} (${interaction.user.id})` })
+          .setFooter({ text: `Posted by ${interaction.user.username} (${interaction.user.id})` })
       ],
       components: [
       {
@@ -78,14 +76,14 @@ module.exports = {
 
           {
             type: 2,
-            label: 'Fix',
-            style: 2,
+            label: 'Notion\'d',
+            style: 1,
             custom_id: `admin-fixed-${postData.id}`
           },
           {
             type: 2,
-            label: 'Invalid',
-            style: 2,
+            label: 'Remove',
+            style: 4,
             custom_id: `admin-removed-${postData.id}`
           }
         ]
@@ -105,7 +103,7 @@ module.exports = {
     await interaction.reply({
       embeds: [
         {
-          description: `Your bug report has been sent!\n\nWe track these all internally. If the bug report was valid and informative, you'll get your rewards for posting after the rewrite has launched.`
+          description: "Your bug report has been sent!\n\nYou most likely won't hear back about the status of your report, but we'll reach out if we need more information from you!"
         }
       ],
       ephemeral: true

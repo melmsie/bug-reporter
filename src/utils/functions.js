@@ -7,12 +7,14 @@ module.exports = class MiscFunctions {
    */
   validateImage (url, contentType = 'image') {
     if (!url) return false;
-    const [suffix] = url.split('.').slice(-1);
+    const match = url.match(/\.([a-zA-Z0-9]+)(\?|$)/);
+    if (!match) return false;
+    const suffix = match[1];
     if (validImageTypes.includes(suffix) && contentType.includes('image')) {
       return true;
     }
+    return false;
   }
-
   /**
    * Creates an array of strings from a given string, each string being at most 2000 characters/the given limit
    * @param {String} text The text to create an array of "pages" from
