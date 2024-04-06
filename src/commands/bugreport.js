@@ -22,6 +22,8 @@ module.exports = {
     }
 
     if (image) {
+      console.log(`url: ${image.attachment.url}`)
+      console.log(`type: ${image.attachment.contentType}`)
       const isImage = functions.validateImage(image.attachment.url, image.attachment.contentType);
       if (!isImage) {
         await interaction.reply({
