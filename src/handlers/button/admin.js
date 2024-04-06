@@ -45,7 +45,7 @@ module.exports = {
           oldMessage.embeds[0]
             .setColor(15978339)
             .setAuthor({
-              name: 'NEEDS TESTED',
+              name: `NEEDS TESTED ${interaction.user.username}`,
               iconURL: 'https://cdn.discordapp.com/emojis/955847572059193344.webp?size=96&quality=lossless'
             })
         ]
@@ -57,7 +57,7 @@ module.exports = {
           oldMessage.embeds[0]
             .setColor(14666938)
             .setAuthor({
-              name: 'SENT A DM',
+              name: `SENT A DM ${interaction.user.username}`,
               iconURL: 'https://cdn.discordapp.com/emojis/958138188235411548.webp?size=96&quality=lossless'
             })
         ]
@@ -69,7 +69,7 @@ module.exports = {
           oldMessage.embeds[0]
             .setColor(3302605)
             .setAuthor({
-              name: 'PASSED TO DEVS',
+              name: `PASSED TO DEVS ${interaction.user.username}`,
               iconURL: 'https://cdn.discordapp.com/emojis/605899743645794306.webp?size=96&quality=lossless'
             })
         ]
